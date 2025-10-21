@@ -1,3 +1,8 @@
+# Newsletter System Architecture
+
+This file contains a Mermaid collaboration diagram showing the flow from User preferences to Delivery (Email / WhatsApp). Paste this file into a GitHub repository and GitHub will render the diagram.
+
+```mermaid
 graph TD
 
     %% --- Participants ---
