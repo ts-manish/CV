@@ -1,5 +1,6 @@
 ```mermaid
-graph TD %% Changed to Top-Down layout for better alignment of independent flows
+graph TD
+    %% Changed to Top-Down layout for better alignment of independent flows
 
     %% --- Define Participants as Nodes ---
     subgraph User Interaction
