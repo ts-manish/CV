@@ -1,7 +1,7 @@
 ```mermaid
 graph TD
     %% --- Participants ---
-    actor User as "User" %% Changed to actor keyword for stick figure
+    User["User<br/>&#128100;"]
     Backend[": System Backend"]
     DB[": Database"]
     Scraper[": Web Scraper"]
@@ -21,7 +21,7 @@ graph TD
     Delivery -- "3.2. deliverViaWhatsApp()" --> User
 
     %% --- Styling (B&W) ---
-    %% The 'actor' keyword automatically handles its own styling, no need for custom fill/stroke
+    style User fill:#fff,stroke-width:0px
     style Backend fill:#fff,stroke:#333,stroke-width:2px
     style DB fill:#fff,stroke:#333,stroke-width:2px
     style Scraper fill:#fff,stroke:#333,stroke-width:2px
