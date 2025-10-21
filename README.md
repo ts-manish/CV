@@ -26,7 +26,8 @@ graph TD
     WB -- "1.1. storePreferences()" --> DB
     
     %% Flow 2: News Generation & Processing (Triggered by WebApp)
-    WB -- "2. triggerScheduledRun()" --> WB %% Self-message for internal trigger
+    %% Self-message for internal trigger
+    WB -- "2. triggerScheduledRun()" --> WB
     WB -- "2.1. fetchRelevantNews()" --> SC
     SC -- "2.2. return rawNewsData" --> WB
     WB -- "2.3. processAndSimplify()" --> LLMP
