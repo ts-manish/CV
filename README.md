@@ -1,51 +1,31 @@
 ```mermaid
 graph TD
-    %% Changed to Top-Down layout for better alignment of independent flows
+    %% --- Participants ---
+    User["User<br/>&#128100;"]
+    Backend[": System Backend"]
+    DB[": Database"]
+    Scraper[": Web Scraper"]
+    LLM[": LLM Processor"]
+    Generator[": Newsletter Generator"]
+    Delivery[": Delivery Service"]
 
-    %% --- Define Participants as Nodes ---
-    subgraph User Interaction
-        U["&nbsp;&nbsp;&nbsp;User&nbsp;&nbsp;&nbsp;<br/>&#128100;"]
-        WB[": System Backend"]
-        DB[": Database"]
-    end
+    %% --- Interaction Flow ---
+    User -- "1. submitPreferences()" --> Backend
+    Backend -- "1.1. storePreferences()" --> DB
+    Backend -- "2.1. fetchNews()" --> Scraper
+    Scraper -- "2.2. rawNews" --> LLM
+    LLM -- "2.3. simplifiedContent" --> Generator
+    Generator -- "2.4. newsletterFiles" --> Backend
+    Backend -- "3. sendNewsletter()" --> Delivery
+    Delivery -- "3.1. deliverViaEmail()" --> User
+    Delivery -- "3.2. deliverViaWhatsApp()" --> User
 
-    subgraph "News Processing & Generation"
-        SC[": Web Scraper"]
-        LLMP[": LLM Processor"]
-        GEN[": Newsletter Generator"]
-    end
-    
-    subgraph Delivery
-        DEL[": Delivery Service"]
-    end
-
-    %% --- Define Interactions as Labeled Links ---
-    
-    %% Flow 1: Preference Submission
-    U -- "1. submitPreferences()" --> WB
-    WB -- "1.1. storePreferences()" --> DB
-    
-    %% Flow 2: News Generation & Processing (Triggered by WebApp)
-    %% Self-message for internal trigger
-    WB -- "2. triggerScheduledRun()" --> WB
-    WB -- "2.1. fetchRelevantNews()" --> SC
-    SC -- "2.2. return rawNewsData" --> WB
-    WB -- "2.3. processAndSimplify()" --> LLMP
-    LLMP -- "2.4. return simplifiedContent" --> WB
-    WB -- "2.5. createNewsletter()" --> GEN
-    GEN -- "2.6. return PDF & Audio" --> WB
-    
-    %% Flow 3: Delivery
-    WB -- "3. sendNewsletter()" --> DEL
-    DEL -- "3.1. deliverViaEmail()" --> U
-    DEL -- "3.2. deliverViaWhatsApp()" --> U
-
-    %% --- Style nodes to look like UML objects ---
-    style U fill:#fff,stroke-width:0px
-    style WB fill:#fff,stroke:#333,stroke-width:2px
+    %% --- Styling (B&W) ---
+    style User fill:#fff,stroke-width:0px
+    style Backend fill:#fff,stroke:#333,stroke-width:2px
     style DB fill:#fff,stroke:#333,stroke-width:2px
-    style SC fill:#fff,stroke:#333,stroke-width:2px
-    style LLMP fill:#fff,stroke:#333,stroke-width:2px
-    style GEN fill:#fff,stroke:#333,stroke-width:2px
-    style DEL fill:#fff,stroke:#333,stroke-width:2px
+    style Scraper fill:#fff,stroke:#333,stroke-width:2px
+    style LLM fill:#fff,stroke:#333,stroke-width:2px
+    style Generator fill:#fff,stroke:#333,stroke-width:2px
+    style Delivery fill:#fff,stroke:#333,stroke-width:2px
 ```
